@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Hilangkan Action Bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar()?.hide();
+        }
+
         editTextTemperature = findViewById(R.id.editTextTemperature)
         buttonToFahrenheit = findViewById(R.id.buttonToFahrenheit)
         buttonToCelsius = findViewById(R.id.buttonToCelsius)
