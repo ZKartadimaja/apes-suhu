@@ -19,10 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Hilangkan Action Bar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar()?.hide();
-        }
+        // Hide Action Bar
+        supportActionBar?.hide()
 
         editTextTemperature = findViewById(R.id.editTextTemperature)
         buttonToFahrenheit = findViewById(R.id.buttonToFahrenheit)
@@ -42,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val celsiusString = editTextTemperature.text.toString()
         if (celsiusString.isNotEmpty()) {
             val celsius = celsiusString.toDouble()
-            val fahrenheit = (celsius * 9 / 5) + 32
+            val fahrenheit = TemperatureConverter.convertToFahrenheit(celsius)
             textViewResult.text = String.format("%.2f °F", fahrenheit)
         } else {
             textViewResult.text = "Please enter a temperature."
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val fahrenheitString = editTextTemperature.text.toString()
         if (fahrenheitString.isNotEmpty()) {
             val fahrenheit = fahrenheitString.toDouble()
-            val celsius = (fahrenheit - 32) * 5 / 9
+            val celsius = TemperatureConverter.convertToCelsius(fahrenheit)
             textViewResult.text = String.format("%.2f °C", celsius)
         } else {
             textViewResult.text = "Please enter a temperature."
